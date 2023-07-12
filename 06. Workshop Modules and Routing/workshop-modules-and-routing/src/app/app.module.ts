@@ -4,11 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { MainComponent } from './main/main.component';
-import { ThemesListComponent} from './themes-list/themes-list.component';
+import { ThemesListComponent } from './themes-list/themes-list.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
+import { UserModule } from './user/user.module';
+import { ThemeModule } from './theme/theme.module';
+import { AppRoutingModule } from './app-routing.module';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -16,10 +21,17 @@ import { HomeComponent } from './home/home.component';
     MainComponent,
     ThemesListComponent,
     PostsListComponent,
-    HomeComponent
+    HomeComponent,
+    WelcomeComponent
   ],
   imports: [
-    BrowserModule, CoreModule,HttpClientModule,SharedModule
+    BrowserModule,
+    CoreModule,
+    HttpClientModule,
+    SharedModule,
+    AppRoutingModule,
+    UserModule,
+    ThemeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
