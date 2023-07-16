@@ -4,6 +4,7 @@ import { NewThemeComponent } from './new-theme/new-theme.component';
 import { CurrentThemeComponent } from './current-theme/current-theme.component';
 import { ThemeRoutingModule } from './theme-routing.module';
 import { WelcomeComponent } from '../welcome/welcome.component';
+import { FormsModule } from '@angular/forms'
 
 
 
@@ -11,12 +12,12 @@ import { WelcomeComponent } from '../welcome/welcome.component';
   declarations: [
     NewThemeComponent,
     CurrentThemeComponent,
-  
+
   ],
   imports: [
     CommonModule,
     ThemeRoutingModule,
- 
+    FormsModule,
   ]
 })
 export class ThemeModule { }
