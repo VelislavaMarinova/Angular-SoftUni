@@ -1,1 +1,28 @@
 <p>login works!</p>
+<form #loginForm="ngForm" (ngSubmit)="submitHandler(loginForm)">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input
+            type="text"
+            id="email"
+            name="email"
+            ngModel
+            email
+            required
+        >
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input
+            type="text"
+            id="password"
+            name="password"
+            ngModel
+        >
+    </div>
+    <button>Login</button>
+</form>
+<br>
+<br>
+<br>
+{{loginForm.value | json}}

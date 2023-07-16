@@ -1,10 +1,9 @@
 <div class="container">
     <form
         class="login"
-        action=""
-        method="post"
+        #form="ngForm"
+        (ngSubmit)="login(form)"
     >
-
         <fieldset>
             <h2>Login Form</h2>
 
@@ -16,15 +15,26 @@
                     name="email"
                     id="email"
                     placeholder="john.doe@gmail.com"
-                    #inputEmail
+                    onfocus="this.placeholder=''"
+                    onblur="this.placeholder='john.doe@gmail.com'"
+                    #inputEmail="ngModel"
+                    ngModel
+                    required
+                    [appEmail]="appEmailDomains"
                 >
             </p>
-            <p class="error">
-                Email is required!
-            </p>
-            <!-- <p class="error">
-                Email is not valid!
-            </p> -->
+            <ng-container *ngIf="inputEmail.touched">
+                <p
+                    class="error"
+                    *ngIf="inputEmail.errors?.['required']"
+                >Email is required!</p>
+                <p
+                    class="error"
+                    *ngIf="inputEmail.errors?.['appEmailValidator']"
+                >Email is not valid!</p>
+            </ng-container>
+
+            <!-- {{form?.errors | json}} -->
 
             <p class="field field-icon">
                 <label for="password"><span><i class="fas fa-lock"></i></span></label>
@@ -33,17 +43,27 @@
                     name="password"
                     id="password"
                     placeholder="******"
-                    #inputPass
+                    #inputPassword="ngModel"
+                    ngModel
+                    required
+                    minlength="5"
                 >
             </p>
-            <!-- <p class="error">
-                Password is required!
-            </p>
-            <p class="error">
-                Password must be at least 4 characters!
-            </p> -->
+            <ng-container *ngIf="inputPassword.touched">
+                <p
+                    class="error"
+                    *ngIf="inputPassword.errors?.['required']"
+                >Password is required!</p>
+                <p
+                    class="error"
+                    *ngIf="inputPassword.errors?.['minlength']"
+                >Password must be at least {{inputPassword.errors?.['minlength']['requiredeLength']}} characters!</p>
+            </ng-container>
 
-            <button (click)="login(inputEmail.value,inputPass.value)">Login</button>
+            <button 
+            [disabled]="form.invalid"
+            [style]="{backgroundColor: form.invalid ? 'grey': 'blue'}" 
+            >Login</button>
 
             <p class="text-center">
                 Have an account?
@@ -52,4 +72,5 @@
 
         </fieldset>
     </form>
+    <!-- {{form.value | json}} -->
 </div>
